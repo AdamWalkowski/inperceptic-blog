@@ -5,7 +5,7 @@ const config: GatsbyConfig = {
     title: `inperceptic-blog`,
     description: `InPerceptic Blog | Adam Walkowski`,
     author: `Adam Walkowski`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `http://blog.inperceptic.com`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -29,6 +29,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/content/articles`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `projects`,
+        path: `${__dirname}/content/projects`,
+      },
+    },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -40,13 +47,13 @@ const config: GatsbyConfig = {
       __key: 'images',
     },
     // images for articles
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `article-images`,
-        path: `${__dirname}/content/articles/`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `article-images`,
+    //     path: `${__dirname}/content/articles/`,
+    //   },
+    // },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -77,6 +84,19 @@ const config: GatsbyConfig = {
         path: `${__dirname}/content/personal`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/referrals`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/tools`,
+      },
+    },
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {

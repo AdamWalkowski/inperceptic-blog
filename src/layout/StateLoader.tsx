@@ -1,58 +1,55 @@
-import { appDispatcher } from '../app/state/app-dispatcher';
-import { InPercepticState } from '../app/state/store';
-import { IServiceNode } from '../modules/about';
-import { aboutDispatcher } from '../modules/about/about-dispatcher';
-import { AboutService } from '../modules/about/about-service';
-import { IArticleNode } from '../modules/articles';
-import { ArticleService } from '../modules/articles/article-service';
-import { articlesDispatcher } from '../modules/articles/articles-dispatcher';
+import { useStore } from '../app/state/store';
+import { storeReferrals, storeServices, storeTools } from '../modules/about/about-reducer';
+import { useOffersLoader } from '../modules/about/use-offers-loader';
+import { useReferralsLoader } from '../modules/about/use-referrals-loader';
+import { useToolsLoader } from '../modules/about/use-tools-loader';
+import { storeArticles } from '../modules/articles/articles-reducer';
+import { useArticlesLoader } from '../modules/articles/use-articles-loader';
+import { storeProjects } from '../modules/projects/projects-reducer';
+import { useProjectsLoader } from '../modules/projects/use-projects-loader';
 
-import { graphql, useStaticQuery } from 'gatsby';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-interface IStateLoader {
-  isArticlesLoaded?: boolean;
-  initApp?: () => void;
-  loadAbout?: (node: IServiceNode[]) => void;
-  loadArticles?: (edges: IArticleNode[]) => void;
-}
+interface IStateLoader {}
 
-const Loader = (props: IStateLoader) => {
-  const bootApplication = async () => {
-    if (props.initApp) {
-      await props.initApp();
-    }
-  };
+export const StateLoader: React.FC<IStateLoader> = () => {
+  const dispatch = useDispatch();
+
+  const isServicesLoaded = useStore((state) => state.about.isServicesLoaded);
+  const loadedServices = useOffersLoader();
+
+  const isReferralsLoaded = useStore((state) => state.about.isReferralsLoaded);
+  const loadedReferrals = useReferralsLoader();
+
+  const isToolsLoaded = useStore((state) => state.about.isToolsLoaded);
+  const loadedTools = useToolsLoader();
+
+  const isArticlesLoaded = useStore((state) => state.articles.isLoaded);
+  const loadedArticles = useArticlesLoader();
+
+  const isProjectsLoaded = useStore((state) => state.projects.isLoaded);
+  const loadedProjects = useProjectsLoader();
 
   useEffect(() => {
-    bootApplication();
-  }, []);
+    dispatch(storeServices(loadedServices));
+  }, [isServicesLoaded]);
 
-  const servicesResult = AboutService.getAllServices();
-  if (servicesResult?.allPersonalYaml?.nodes && props.loadAbout) {
-    props.loadAbout(servicesResult.allPersonalYaml.nodes);
-  }
+  useEffect(() => {
+    dispatch(storeReferrals(loadedReferrals));
+  }, [isReferralsLoaded]);
 
-  const articlesResult = ArticleService.getAllArticles();
-  if (!props.isArticlesLoaded && articlesResult?.allMarkdownRemark?.nodes && props.loadArticles) {
-    const data = articlesResult.allMarkdownRemark.nodes;
-    data.sort((a: IArticleNode, b: IArticleNode) => {
-      return Date.parse(b.fields.prefix) - Date.parse(a.fields.prefix);
-    });
-    props.loadArticles(data);
-  }
+  useEffect(() => {
+    dispatch(storeTools(loadedTools));
+  }, [isToolsLoaded]);
+
+  useEffect(() => {
+    dispatch(storeArticles(loadedArticles));
+  }, [isArticlesLoaded]);
+
+  useEffect(() => {
+    dispatch(storeProjects(loadedProjects));
+  }, [isProjectsLoaded]);
 
   return null;
 };
-
-export const StateLoader = connect(
-  (state: InPercepticState) => ({
-    isArticlesLoaded: state.articles.isLoaded,
-  }),
-  {
-    initApp: appDispatcher.initialize,
-    loadArticles: articlesDispatcher.loadArticles,
-    loadAbout: aboutDispatcher.loadAbout,
-  }
-)(Loader);

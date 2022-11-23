@@ -1,49 +1,32 @@
-import { PageType } from '../app';
-import { appDispatcher } from '../app/state/app-dispatcher';
+import { IBrowserLocation, PageType, ReactChildren } from '../app';
+import { selectActivePage, storeBrowserLocation } from '../app/state/app-reducer';
 import { InPercepticState } from '../app/state/store';
 import '../styles/pola-web.css';
 import { Device, desktopHeaderHeight, mobileHeaderHeight } from '../styles/theme';
 import ErrorBoundary from '../utils/error-boundary';
 import styled from 'styled-components';
 
-import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { useEffect } from 'react';
-import { ConnectedProps, connect, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { PageFooter } from './PageFooter';
 import { PageHeader } from './PageHeader';
 import { StateLoader } from './StateLoader';
 
-const connector = connect(
-  (state: InPercepticState) => {
-    const { app } = state;
-    return {
-      activePage: app.activePage,
-      isMenuExpanded: false,
-    };
-  },
-  {
-    loadBrowserLocation: appDispatcher.loadBrowserLocation,
-    selectActivePage: appDispatcher.selectActivePage,
-  }
-);
-
-type ReduxProps = ConnectedProps<typeof connector>;
-
 type ILayoutStyles = {
   marginTop?: string;
 };
 
-type IPageLayout = ReduxProps & {
+interface IPageLayout {
   page: PageType;
   location?: Location;
 
   styles?: ILayoutStyles;
-  children: JSX.Element | JSX.Element[];
-};
+  children: ReactChildren;
+}
 
-const LayoutContainer = styled(CustomScrollbarDiv)`
+const LayoutContainer = styled.div`
   display: flex;
   flex-flow: column;
   height: 100vh;
@@ -64,32 +47,33 @@ const PageContent = styled.main<ILayoutStyles>`
   }
 `;
 
-const Layout: React.FC<IPageLayout> = ({
-  location,
-  page,
-  activePage,
-  isMenuExpanded,
-  children,
-  loadBrowserLocation,
-  selectActivePage,
-  styles,
-}) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
+export const PageLayout: React.FC<IPageLayout> = ({ location, page, children, styles }) => {
+  const activePage = useSelector((state: InPercepticState) => state.app.activePage);
+  const dispatch = useDispatch();
+
+  const updatePage = (location?: Location) => {
+    if (location) {
+      const locationParams: IBrowserLocation = {
+        hash: location.hash,
+        search: location.search,
+        host: location.host,
+        hostname: location.hostname,
+        href: location.href,
+        origin: location.origin,
+        pathname: location.pathname,
+        port: location.port,
+        protocol: location.protocol,
+      };
+      dispatch(storeBrowserLocation(locationParams));
+      dispatch(selectActivePage(page));
     }
-  `);
+  };
 
   useEffect(() => {
-    if (location) {
-      loadBrowserLocation(location);
-      selectActivePage(page);
-    }
+    updatePage(location);
   }, []);
+
+  const isMenuExpanded = false;
 
   return (
     <ErrorBoundary scope="page-layout">
@@ -102,5 +86,3 @@ const Layout: React.FC<IPageLayout> = ({
     </ErrorBoundary>
   );
 };
-
-export const PageLayout = connector(Layout);

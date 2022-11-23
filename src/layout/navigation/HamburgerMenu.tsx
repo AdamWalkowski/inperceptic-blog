@@ -52,6 +52,7 @@ const Items = styled.div`
 interface IHamburgerMenu {
   expanded: boolean;
   onExpand: (expanded: boolean) => void;
+  children: React.ReactNode | React.ReactNode[];
 }
 
 export const HamburgerMenu: React.FC<IHamburgerMenu> = ({ expanded, children, onExpand }) => {

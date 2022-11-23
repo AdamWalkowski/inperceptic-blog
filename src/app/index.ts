@@ -11,7 +11,14 @@ export interface IGatsbyNode {
 // Redux requires to use serializable objects meaning no classes, rather pure objects or interfaces
 // so we store in Redux reduces only serializable objects (or strings)
 export interface IReduxData {
-  id: guid;
+  graphId: guid;
+}
+
+export type ReactChildren = JSX.Element | JSX.Element[];
+
+export interface ICollectionState<T extends IReduxData> {
+  isLoaded: boolean;
+  entries: T[];
 }
 
 /**

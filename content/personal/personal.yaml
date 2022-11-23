@@ -1,4 +1,18 @@
-- name: service A
-  description: But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-- name: service B
-  description: Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.
+- tag: web
+  name: Web development
+  description: As a software developer I have about 10 years of experience in building professional software solutions
+    for international clients including small product-oriented companies as well as complex enterprises.
+    Building custom web applications, designing and developing web APIs, data processing services as well as data visualization tools.
+  color: '#4DB8E0'
+- tag: media
+  name: Interactive video
+  description:
+    I have produced several independent film projects where my specialty is non-linear movies served online as applications.
+    Also founded own video production studio. I have strong experience in interaction design, video encoding,
+    automate image processing, VR applications, developing media editing tools.
+  color: '#EC5749'
+- tag: consultancy
+  name: Technical consultancy
+  description: Deriving from participation in various web, software and video projects
+    I'm designing technical solutions for web products in cloud infrastructure.
+  color: '#5c67d6'

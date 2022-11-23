@@ -2,6 +2,7 @@ import { IArticleNode } from '..';
 import { PageType } from '../../../app';
 import { InPercepticState } from '../../../app/state/store';
 import { PageLayout } from '../../../layout/PageLayout';
+import { PageSection } from '../../../layout/PageSection';
 import SEOMetadata from '../../../utils/seo';
 import styled from 'styled-components';
 

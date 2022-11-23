@@ -20,6 +20,30 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 };
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type ReferralsYaml implements Node {
+      firstname: String!
+      lastname: String!
+      role: String!
+      pictureUrl: String
+      company: Company
+      quote: Quote
+    }
+    type Company {
+      name: String!
+      logoUrl: String!
+      url: String!
+    }
+    type Quote {
+      text: String!
+      date: String!
+    }
+  `;
+  createTypes(typeDefs);
+};
+
 exports.createPages = async function ({ graphql, actions }) {
   const { createPage } = actions;
 

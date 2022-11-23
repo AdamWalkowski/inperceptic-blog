@@ -1,0 +1,42 @@
+- firstname: Erlend
+  lastname: Wollan
+  role: Software Architect
+  pictureUrl: ew-picture.jpg
+  company:
+    name: Axbit AS
+    logoUrl: axbit-icon.jpg
+    url: https://axbit.com
+  quote:
+    text: Adam is highly passionate about architectural design and obtaining deep
+      technical understanding of the domain at hand. He has a critical eye towards
+      these aspects and towards our current standing and he brings to the table potent
+      avenues that he has researched that could further improve the project.
+    date: 2020-03
+- firstname: Mateusz
+  lastname: Perowicz
+  role: Product Manager
+  pictureUrl: mp-picture.jpg
+  company:
+    name: Klub Jagielloński
+    logoUrl: kj-icon.jpg
+    url: https://klubjagiellonski.pl
+  quote:
+    text: Thanks to Adam's ability to consider the project as a whole and in the long
+      term, we knew how to prioritize issues to increase the project's potential.
+      Adam is a person who not only performs entrusted tasks on time and precisely,
+      but also goes out with his own initiative and takes over the responsibility.
+    date: 2021-11
+- firstname: Paweł
+  lastname: Śledziński
+  role: Business Owner
+  pictureUrl: ps-picture.jpg
+  company:
+    name: Perfect One Software
+    logoUrl: perfectone-icon.jpg
+    url: https://perfectone.pl
+  quote:
+    text: Adam helped us to start up two new projects and perform their architectural
+      design. His technical input in organizing backend services provides the team
+      with a structured yet simple design approach for technical solutions. Adam provides
+      also good practices from frontend frameworks usage.
+    date: 2022-05

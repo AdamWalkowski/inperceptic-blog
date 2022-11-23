@@ -21,7 +21,7 @@ const applicationSlice = createSlice({
     initializeApp: (state: IAppState) => {
       state.initialized = true;
     },
-    loadBrowserLocation: (state: IAppState, action) => {
+    storeBrowserLocation: (state: IAppState, action) => {
       state.location = action.payload;
     },
     selectActivePage: (state: IAppState, action) => {
@@ -30,6 +30,6 @@ const applicationSlice = createSlice({
   },
 });
 
-export const { initializeApp, loadBrowserLocation, selectActivePage } = applicationSlice.actions;
+export const { initializeApp, storeBrowserLocation, selectActivePage } = applicationSlice.actions;
 
 export default applicationSlice.reducer;

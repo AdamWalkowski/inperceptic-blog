@@ -1,14 +1,17 @@
+import { IReduxData } from '../../app';
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface IArticleData {
+export interface IArticleShortData extends IReduxData {
   title: string;
   subTitle: string;
   category: string;
+  date: string;
+  slug: string;
 }
 
 export interface IArticlesState {
   isLoaded: boolean;
-  articles: IArticleData[];
+  articles: IArticleShortData[];
 }
 
 const initialState: IArticlesState = {
@@ -17,16 +20,16 @@ const initialState: IArticlesState = {
 };
 
 const articlesSlice = createSlice({
-  name: 'app',
+  name: 'articles',
   initialState,
   reducers: {
-    loadArticles: (state: IArticlesState, action: any) => {
-      state.isLoaded = true;
+    storeArticles: (state: IArticlesState, action: any) => {
       state.articles = action.payload;
+      state.isLoaded = action.payload !== undefined;
     },
   },
 });
 
-export const { loadArticles } = articlesSlice.actions;
+export const { storeArticles } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

@@ -1,0 +1,48 @@
+- name: Node.js
+  logoUrl: node-js-png-transparent-logo-thumbnail.png
+  description: an open-source, cross-platform, back-end JavaScript runtime environment.
+    Node.js lets developers use JavaScript to write command line tools and server-side
+    dynamic web pages.
+  url: https://nodejs.dev/
+- name: FFMpeg
+  logoUrl: ffmpeg-logo.png
+  description: A complete, cross-platform solution to record, convert and stream audio
+    and video.
+  url: https://ffmpeg.org/
+- name: Microsoft Azure
+  logoUrl: msazure-logo.png
+  description: A cloud computing service operated by Microsoft for application management
+    via Microsoft-managed data centers. It provides software as a service (SaaS),
+    platform as a service (PaaS) and infrastructure as a service (IaaS) and supports
+    many different programming languages, tools, and frameworks.
+  url: https://azure.microsoft.com/en-us/
+- name: '.NET Core'
+  logoUrl: net-core-framework.png
+  description: A free and open-source, managed computer software framework for Windows,
+    Linux, and macOS operating systems. A cross-platform successor to .NET Framework
+    and released under the MIT License.
+  url: https://dotnet.microsoft.com/en-us/
+- name: ASP.NET Core
+  logoUrl: net-mvc-asp-net-framework.png
+  description: A free and open-source web modular framework developed by Microsoft.
+  url: https://docs.microsoft.com/en-us/aspnet/core/
+- name: React.js
+  logoUrl: reactjs-logo.png
+  description: A free and open-source front-end JavaScript library for building UI
+    components. It is maintained by Meta (formerly Facebook), strong community of
+    individual developers and companies. Can be used as a base in the development
+    of single-page or mobile apps.
+  url: https://reactjs.org/
+- name: Next.js
+  logoUrl: nextjs-logo.svg
+  description: An open-source web development framework built on top of Node.js enabling
+    React based web applications functionalities such as server-side rendering and
+    generating static websites.
+  url: https://nextjs.org/
+- name: Gatsby.js
+  logoUrl: gatsby-logo-hd.png
+  description: An open-source static site generator built on top of Node.js using
+    React and GraphQL. Provides over 2500 plugins to create static sites based on
+    Markdown documents, MDX (Markdown with JSX), and numerous Content Management Systems
+    like WordPress.
+  url: https://www.gatsbyjs.com/
